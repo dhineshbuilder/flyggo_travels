@@ -6,14 +6,7 @@ const Home = () => {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="relative h-[80vh] flex flex-col items-center justify-center text-center px-4">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-50/90 z-10"></div>
-          <img 
-            src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=80" 
-            alt="Travel Background" 
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
+
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
