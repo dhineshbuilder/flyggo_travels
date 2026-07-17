@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -28,32 +29,30 @@ const Home = () => {
             Discover the world's most breathtaking destinations curated for the luxury explorer.
           </p>
 
-          {/* Search Widget */}
-          <div className="bg-white/80 backdrop-blur-xl p-4 md:p-6 rounded-3xl shadow-xl border border-white/40 flex flex-col md:flex-row gap-4 items-center justify-between text-left">
-            <div className="flex-1 px-4">
-              <label className="block text-xs font-semibold text-sky-700 uppercase tracking-wider mb-1">Destination</label>
-              <input type="text" placeholder="Where to?" className="w-full bg-transparent border-none outline-none font-medium text-slate-900 placeholder-slate-400" />
-            </div>
-            <div className="hidden md:block w-px h-12 bg-slate-200"></div>
-            <div className="flex-1 px-4">
-              <label className="block text-xs font-semibold text-sky-700 uppercase tracking-wider mb-1">Dates</label>
-              <input type="text" placeholder="Select dates" className="w-full bg-transparent border-none outline-none font-medium text-slate-900 placeholder-slate-400" />
-            </div>
-            <div className="hidden md:block w-px h-12 bg-slate-200"></div>
-            <div className="flex-1 px-4">
-              <label className="block text-xs font-semibold text-sky-700 uppercase tracking-wider mb-1">Guests</label>
-              <select className="w-full bg-transparent border-none outline-none font-medium text-slate-900 cursor-pointer">
-                <option>2 Guests</option>
-                <option>1 Guest</option>
-                <option>3+ Guests</option>
-              </select>
-            </div>
-            <button 
-              className="w-full md:w-auto px-8 py-3 rounded-2xl text-white font-medium transition-transform hover:scale-105 shadow-md"
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
+            <Link 
+              to="/contact" 
+              className="px-8 py-4 rounded-full text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all text-sm w-full sm:w-auto text-center"
               style={{ background: 'linear-gradient(to right, #ea580c, #f97316)' }}
             >
-              Search
-            </button>
+              Plan Your Journey
+            </Link>
+            <Link 
+              to="/gallery" 
+              className="px-8 py-4 rounded-full bg-white/80 hover:bg-white text-slate-800 font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all border border-slate-200 text-sm w-full sm:w-auto text-center"
+            >
+              Explore Gallery
+            </Link>
+          </div>
+
+          {/* Highlights */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+            <span className="flex items-center gap-1.5"><span className="text-sky-700">✦</span> Tailored Itineraries</span>
+            <span className="text-slate-300 hidden sm:inline">•</span>
+            <span className="flex items-center gap-1.5"><span className="text-sky-700">✦</span> Premium Stays</span>
+            <span className="text-slate-300 hidden sm:inline">•</span>
+            <span className="flex items-center gap-1.5"><span className="text-sky-700">✦</span> 24/7 Concierge</span>
           </div>
         </motion.div>
       </section>
