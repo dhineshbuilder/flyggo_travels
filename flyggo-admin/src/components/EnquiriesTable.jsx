@@ -63,52 +63,61 @@ const EnquiriesTable = () => {
       </div>
 
       <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-slate-50/50 border-b border-slate-100">
-              <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Customer</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Email Address</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Message Preview</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Date</th>
-              <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Status</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-50">
-            {enquiries.map(enq => {
-              const dateObj = enq.createdAt?.toDate();
-              const formattedDate = dateObj ? dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Unknown';
-              const isPending = enq.status !== 'Responded';
-              
-              return (
-                <tr key={enq.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-sky-700 text-white flex items-center justify-center text-xs font-bold">
-                        {getInitials(enq.name)}
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse min-w-[700px]">
+            <thead>
+              <tr className="bg-slate-50/50 border-b border-slate-100">
+                <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Customer</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Email Address</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Message Preview</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Date</th>
+                <th className="px-6 py-4 text-xs font-bold text-slate-700 uppercase tracking-wider">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-50">
+              {enquiries.map(enq => {
+                const dateObj = enq.createdAt?.toDate();
+                const formattedDate = dateObj ? dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Unknown';
+                const isPending = enq.status !== 'Responded';
+                
+                return (
+                  <tr key={enq.id} className="hover:bg-slate-50 transition-colors">
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-sky-700 text-white flex items-center justify-center text-xs font-bold">
+                          {getInitials(enq.name)}
+                        </div>
+                        <div className="font-semibold text-sm text-slate-900">{enq.name || 'Unknown User'}</div>
                       </div>
-                      <div className="font-semibold text-sm text-slate-900">{enq.name || 'Unknown User'}</div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-slate-600">{enq.email}</td>
-                  <td className="px-6 py-4 text-sm text-slate-600 truncate max-w-[200px]">{enq.message}</td>
-                  <td className="px-6 py-4 text-sm text-slate-500">{formattedDate}</td>
-                  <td className="px-6 py-4">
-                    <button 
-                      onClick={() => handleStatusToggle(enq.id, enq.status)}
-                      className={`px-3 py-1 rounded-full text-xs font-bold ${
-                        isPending 
-                          ? 'bg-red-50 text-red-600 hover:bg-red-100' 
-                          : 'bg-sky-50 text-sky-600 hover:bg-sky-100'
-                      } transition-colors`}
-                    >
-                      {isPending ? 'Pending' : 'Responded'}
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-slate-600">{enq.email}</td>
+                    <td className="px-6 py-4 text-sm text-slate-600">
+                      <p 
+                        className="truncate max-w-[120px] md:max-w-xs lg:max-w-md xl:max-w-lg" 
+                        title={enq.message}
+                      >
+                        {enq.message}
+                      </p>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-slate-500">{formattedDate}</td>
+                    <td className="px-6 py-4">
+                      <button 
+                        onClick={() => handleStatusToggle(enq.id, enq.status)}
+                        className={`px-3 py-1 rounded-full text-xs font-bold ${
+                          isPending 
+                            ? 'bg-red-50 text-red-600 hover:bg-red-100' 
+                            : 'bg-sky-50 text-sky-600 hover:bg-sky-100'
+                        } transition-colors`}
+                      >
+                        {isPending ? 'Pending' : 'Responded'}
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
         
         {/* Pagination Footer */}
         <div className="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex justify-between items-center text-sm text-slate-500">
