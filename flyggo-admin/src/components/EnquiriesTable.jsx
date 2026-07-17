@@ -36,20 +36,6 @@ const EnquiriesTable = () => {
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Customer Enquiries</h1>
           <p className="text-slate-500 text-sm">Manage and respond to incoming travel requests from your website.</p>
         </div>
-        
-        <div className="flex gap-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-2.5 text-slate-400" size={18} />
-            <input 
-              type="text" 
-              placeholder="Search enquiries..." 
-              className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-full text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 w-64"
-            />
-          </div>
-          <button className="bg-sky-700 text-white px-5 py-2 rounded-full text-sm font-medium flex items-center gap-2 shadow-sm hover:bg-sky-800 transition-colors">
-            <Filter size={16} /> Filter
-          </button>
-        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
