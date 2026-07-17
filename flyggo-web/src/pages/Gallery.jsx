@@ -19,6 +19,13 @@ const Gallery = () => {
     });
     return () => unsubscribe();
   }, []);
+  const getOptimizedUrl = (url) => {
+    if (!url) return '';
+    if (url.includes('res.cloudinary.com')) {
+      return url.replace('/upload/', '/upload/f_auto,q_auto,w_800/');
+    }
+    return url;
+  };
 
   return (
     <div className="pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
@@ -60,7 +67,7 @@ const Gallery = () => {
               className="relative rounded-3xl overflow-hidden shadow-sm group break-inside-avoid"
             >
               <img 
-                src={img.url} 
+                src={getOptimizedUrl(img.url)} 
                 alt={img.title} 
                 className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
